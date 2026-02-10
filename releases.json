@@ -1,0 +1,8 @@
+{
+  "latest": {
+    "version": "1.0.1",
+    "date": "2026-02-10T16:07:19Z",
+    "changelog": "\n修复 Windows 构建：移除 .dart_tool 缓存避免路径冲突\n",
+    "downloads": [{"name":"SHA256SUMS.txt","size":385,"url":"https://github.com/zhengwenxun/iSwitch_flutter/releases/download/v1.0.1/SHA256SUMS.txt"},{"name":"iSwitchG-v1.0.1-android-arm64.apk","size":23064563,"url":"https://github.com/zhengwenxun/iSwitch_flutter/releases/download/v1.0.1/iSwitchG-v1.0.1-android-arm64.apk"},{"name":"iSwitchG-v1.0.1-ios-unsigned.ipa","size":10617934,"url":"https://github.com/zhengwenxun/iSwitch_flutter/releases/download/v1.0.1/iSwitchG-v1.0.1-ios-unsigned.ipa"},{"name":"iSwitchG-v1.0.1-macos.dmg","size":21545423,"url":"https://github.com/zhengwenxun/iSwitch_flutter/releases/download/v1.0.1/iSwitchG-v1.0.1-macos.dmg"},{"name":"iSwitchG-v1.0.1-windows.zip","size":16300912,"url":"https://github.com/zhengwenxun/iSwitch_flutter/releases/download/v1.0.1/iSwitchG-v1.0.1-windows.zip"}]
+  }
+}

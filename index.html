@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iSwitchG - 下载</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .version-info {
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+
+        .version-info h2 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .version-info .version {
+            font-size: 1.2em;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .version-info .date {
+            color: #718096;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .downloads {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .download-card {
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .download-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .download-info {
+            flex: 1;
+        }
+
+        .download-info .platform {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+
+        .download-info .description {
+            color: #718096;
+            font-size: 0.9em;
+        }
+
+        .download-info .size {
+            color: #a0aec0;
+            font-size: 0.85em;
+            margin-top: 3px;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .changelog {
+            background: #f7fafc;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .changelog h3 {
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .changelog ul {
+            list-style: none;
+        }
+
+        .changelog li {
+            color: #4a5568;
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .changelog li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: #f7fafc;
+            color: #718096;
+        }
+
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .emoji {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .download-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .download-btn {
+                margin-top: 15px;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎮 iSwitchG</h1>
+            <p>Nintendo Switch 工具箱 - 支持宝可梦游戏内存编辑</p>
+        </div>
+
+        <div class="content">
+            <div class="version-info">
+                <h2>📦 最新版本</h2>
+                <div class="version" id="latest-version">加载中...</div>
+                <div class="date" id="release-date">发布时间: 加载中...</div>
+            </div>
+
+            <div class="downloads" id="downloads">
+                <div style="text-align: center; padding: 40px; color: #718096;">
+                    正在加载下载链接...
+                </div>
+            </div>
+
+            <div class="changelog">
+                <h3>📝 更新说明</h3>
+                <div id="changelog-content">
+                    <p style="color: #718096;">加载中...</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>
+                <a href="https://github.com/zhengwenxun/fultter" target="_blank">📂 GitHub 仓库</a> ·
+                <a href="https://github.com/zhengwenxun/fultter/releases" target="_blank">📋 所有版本</a>
+            </p>
+            <p style="margin-top: 10px; font-size: 0.9em;">
+                💡 提示：下载后可能需要允许"未知来源"安装或系统安全设置
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // 配置：从本地 JSON 文件加载（Cloudflare Pages 托管）
+        const RELEASES_JSON_URL = './releases.json';
+        const GITHUB_REPO = 'zhengwenxun/fultter';
+
+        // 平台配置
+        const platformConfig = {
+            'android-arm64': {
+                emoji: '📱',
+                name: 'Android',
+                description: '支持 ARM64 架构（2019 年后的大部分设备）'
+            },
+            'windows': {
+                emoji: '🪟',
+                name: 'Windows',
+                description: '64 位 Windows 系统'
+            },
+            'macos': {
+                emoji: '🍎',
+                name: 'macOS',
+                description: 'Intel & Apple Silicon 通用版'
+            },
+            'ios': {
+                emoji: '📱',
+                name: 'iOS (未签名)',
+                description: '需使用 AltStore/Sideloadly 等工具签名'
+            }
+        };
+
+        // 格式化文件大小
+        function formatBytes(bytes) {
+            if (bytes === 0) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // 格式化日期
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleString('zh-CN', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        // 解析 Markdown 为 HTML（简单版）
+        function parseMarkdown(text) {
+            return text
+                .replace(/^##\s+(.+)$/gm, '<h4>$1</h4>')
+                .replace(/^-\s+(.+)$/gm, '<li>$1</li>')
+                .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                .replace(/`(.+?)`/g, '<code>$1</code>')
+                .replace(/\n\n/g, '<br><br>');
+        }
+
+        // 从平台名称中提取关键字
+        function getPlatformKey(filename) {
+            if (filename.includes('android-arm64')) return 'android-arm64';
+            if (filename.includes('android-arm') && !filename.includes('arm64')) return 'android-arm';
+            if (filename.includes('android-x64')) return 'android-x64';
+            if (filename.includes('windows')) return 'windows';
+            if (filename.includes('macos')) return 'macos';
+            if (filename.includes('ios')) return 'ios';
+            return null;
+        }
+
+        // 加载本地 releases.json 数据
+        async function loadLatestRelease() {
+            try {
+                const response = await fetch(RELEASES_JSON_URL);
+                if (!response.ok) throw new Error('Failed to fetch releases data');
+
+                const data = await response.json();
+                const latest = data.latest;
+
+                // 更新版本信息
+                document.getElementById('latest-version').textContent = latest.version;
+                document.getElementById('release-date').textContent = `发布时间: ${formatDate(latest.date)}`;
+
+                // 生成下载卡片
+                const downloadsContainer = document.getElementById('downloads');
+                downloadsContainer.innerHTML = '';
+
+                // 按平台配置顺序生成下载卡片
+                for (const [key, config] of Object.entries(platformConfig)) {
+                    const asset = latest.downloads.find(d => getPlatformKey(d.name) === key);
+                    if (asset) {
+                        const card = document.createElement('div');
+                        card.className = 'download-card';
+                        card.innerHTML = `
+                            <div class="download-info">
+                                <div class="platform">
+                                    <span class="emoji">${config.emoji}</span>
+                                    ${config.name}
+                                </div>
+                                <div class="description">${config.description}</div>
+                                <div class="size">${formatBytes(asset.size)}</div>
+                            </div>
+                            <a href="${asset.url}" class="download-btn">下载</a>
+                        `;
+                        downloadsContainer.appendChild(card);
+                    }
+                }
+
+                // 更新更新说明
+                const changelogContainer = document.getElementById('changelog-content');
+                if (latest.changelog) {
+                    changelogContainer.innerHTML = parseMarkdown(latest.changelog);
+                } else {
+                    changelogContainer.innerHTML = '<p style="color: #718096;">暂无更新说明</p>';
+                }
+
+            } catch (error) {
+                console.error('Error loading release:', error);
+                document.getElementById('latest-version').textContent = '加载失败';
+                document.getElementById('release-date').textContent = '请稍后重试或访问 GitHub Releases';
+                document.getElementById('downloads').innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: #e53e3e;">
+                        <p>无法加载下载链接</p>
+                        <p style="margin-top: 10px;">
+                            <a href="https://github.com/${GITHUB_REPO}/releases" target="_blank" style="color: #667eea;">
+                                前往 GitHub Releases 页面
+                            </a>
+                        </p>
+                    </div>
+                `;
+            }
+        }
+
+        // 页面加载时执行
+        loadLatestRelease();
+    </script>
+</body>
+</html>
